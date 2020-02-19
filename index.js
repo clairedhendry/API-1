@@ -7,32 +7,15 @@ function getRandomDogs(number) {
     const fetchNumber = `https://dog.ceo/api/breeds/image/random/${number}`
     fetch(fetchNumber)
     .then(response => response.json())
-    .then(responseJson => displayDogs(responseJson))
+    .then(responseJson => console.log(responseJson.message))
     .catch(error => alert("something's not right."))
     
 }  else { 
     fetch('https://dog.ceo/api/breeds/image/random/3')
     .then(response => response.json())
-    .then(responseJson => displayDogs(responseJson))
+    .then(responseJson => console.log(responseJson.message))
     .catch(error => alert("something's not right."))
 }
-}
-
-function displayDogs(responseJson) {
-   $("dog-images, img").remove();
-   console.log(responseJson.message);
-   $(".dog-images").removeClass("hidden");
-   for (let i = 0; i < responseJson.message.length; i++) {
-
-   let dogImage = generateDogImage(responseJson, i);
-  
-   $(".dog-images").append(dogImage);
-   }
-   
-}
-
-function generateDogImage(responseJson, i) {
-   return `<img src="${responseJson.message[i]}" class="results-image"/>`
 }
 
 
